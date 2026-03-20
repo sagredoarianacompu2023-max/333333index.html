@@ -41,7 +41,7 @@
         const ctx = canvas.getContext('2d');
         const texto = "te amo";
         const color = "#FF69B4"; // Rosa fuerte
-        const cantidad = 380; // Densidad de palabras
+        const cantidad = 300; // Densidad de palabras
         
         let width, height;
         let mouseX = 0, mouseY = 0, pMouseX = 0, pMouseY = 0;
@@ -82,10 +82,10 @@
             ctx.fillRect(0, 0, width, height);
 
             if (!isMoving) {
-                rotY += 0.100; // Giro automático suave
+                rotY += 0.02; // Giro automático suave
             } else {
-                rotY += (mouseX - pMouseX) * 0.01;
-                rotX += (mouseY - pMouseY) * 0.01;
+                rotY += (mouseX - pMouseX) * 0.05;
+                rotX += (mouseY - pMouseY) * 0.05;
             }
 
             pMouseX = mouseX;
