@@ -82,7 +82,7 @@
             ctx.fillRect(0, 0, width, height);
 
             if (!isMoving) {
-                rotY += 0.02; // Giro automático suave
+                rotY += 0.05; // Giro automático suave
             } else {
                 rotY += (mouseX - pMouseX) * 0.05;
                 rotX += (mouseY - pMouseY) * 0.05;
