@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Corazón 3D Te Amo ❤️</title>
     <style>
-        /* CSS para centrar el canvas y poner fondo negro */
+       
         body {
             margin: 0;
             padding: 0;
@@ -19,18 +19,18 @@
             font-family: sans-serif;
         }
 
-        /* Estilos para el lienzo donde dibujaremos */
+       
         canvas {
             display: block;
         }
 
-        /* Un pequeño texto de instrucción opcional */
+       
         #instrucciones {
             position: absolute;
             bottom: 20px;
             font-size: 14px;
             opacity: 0.7;
-            pointer-events: none; /* No interfiere con clics */
+            pointer-events: none; 
         }
     </style>
 </head>
@@ -41,14 +41,14 @@
     <div id="instrucciones">Toca o usa el mouse para girar</div>
 
     <script>
-        // --- CONFIGURACIÓN ---
+        
         const textoParaDibujar = "te amo"; // El texto que formará el corazón
         const colorTexto = "#FF69B4"; // Rosa fuerte (HotPink) como en la imagen
         const cantidadPalabras = 350; // Cuántas palabras forman el corazón (más = más denso)
         const tamañoFuente = 14; // Tamaño de la letra
         const velocidadRotacionBase = 0.005; // Velocidad de giro automático
 
-        // --- INICIALIZACIÓN DEL CANVAS ---
+       
         const canvas = document.getElementById('heartCanvas');
         const ctx = canvas.getContext('2d');
 
@@ -58,7 +58,7 @@
         let rotacionX = 0, rotacionY = 0;
         let estaTocando = false;
 
-        // Ajustar el canvas al tamaño de la ventana
+        
         function ajustarTamaño() {
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
@@ -69,29 +69,28 @@
         window.addEventListener('resize', ajustarTamaño);
         ajustarTamaño();
 
-        // --- MATEMÁTICAS DEL CORAZÓN 3D ---
-        // Generar puntos 3D en la superficie de un corazón
+        
         const puntos = [];
         for (let i = 0; i < cantidadPalabras; i++) {
-            // Ecuación paramétrica de una superficie de corazón (aproximada para 3D)
+            
             const t = Math.PI * 2 * (i / cantidadPalabras);
             const phi = Math.acos(2 * Math.random() - 1);
             
-            // Fórmula base del corazón 2D
+          
             const x2d = 16 * Math.pow(Math.sin(t), 3);
             const y2d = 13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t);
 
-            // Extruir a 3D usando coordenadas esféricas para distribuir
+           
             const x = x2d * Math.sin(phi);
             const y = y2d * Math.sin(phi);
-            const z = x2d * Math.cos(phi) * 0.6; // Comprimir en Z para que no sea una esfera
+            const z = x2d * Math.cos(phi) * 0.6; 
 
             puntos.push({ x, y, z });
         }
 
-        // --- LÓGICA DE ROTACIÓN Y DIBUJO ---
+      
         function proyectarYDibujar(punto, rotX, rotY) {
-            // 1. Rotación en Y (girar izquierda/derecha)
+           
             let x1 = punto.x * Math.cos(rotY) + punto.z * Math.sin(rotY);
             let z1 = -punto.x * Math.sin(rotY) + punto.z * Math.cos(rotY);
             
